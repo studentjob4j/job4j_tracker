@@ -27,6 +27,7 @@ public class Tracker {
             }
         }
         return result = Arrays.copyOf(result, newsize);
+
     }
 
     public Item[] findAll() {
@@ -47,8 +48,8 @@ public class Tracker {
     public boolean replace(int id, Item item) {
         int index = indexOf(id);
         if (index != -1) {
+            item.setId(id);
             items[index] = item;
-            items[index].setId(id);
         }
         return index != -1 ;
     }
@@ -58,7 +59,7 @@ public class Tracker {
         int temp = indexOf(id);
         if (temp != -1) {
             System.arraycopy(items, temp + 1, items, temp, size - temp);
-            items[ids - 1] = null;
+            items[size - 1] = null;
             size--;
             result = true;
         }
