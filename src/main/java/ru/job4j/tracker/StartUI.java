@@ -10,11 +10,11 @@ public class StartUI {
         boolean run = true;
         while (run) {
             this.showMenu();
-            System.out.print("Выберите пункт меню");
+            System.out.println("Выберите пункт меню");
             int select = Integer.parseInt(scanner.nextLine());
             if (select == 0) {
                 System.out.println("Создаем новую заявку");
-                System.out.print("Введите имя заявки");
+                System.out.println("Введите имя заявки");
                 String name = scanner.nextLine();
                 Item item = new Item();
                 item.setName(name);
@@ -23,9 +23,13 @@ public class StartUI {
             } else if (select == 1) {
                 System.out.println("Вывод всех заявок ");
                     Item[] result = tracker.findAll();
+                    if (result.length > 0) {
                 for (int i = 0; i < result.length ; i++) {
                     System.out.println(result[i].getName());
                 }
+                    } else {
+                        System.out.println("Заявки с таким именем не найдены ");
+                    }
             } else if (select == 2) {
                 System.out.println("Редактирую заявку. Введите id заявки");
                 int temp = Integer.parseInt(scanner.nextLine());
