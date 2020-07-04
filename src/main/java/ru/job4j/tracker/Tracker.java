@@ -26,7 +26,7 @@ public class Tracker {
                 result[newsize++] = items[i];
             }
         }
-        return result = Arrays.copyOf(result, newsize);
+        return Arrays.copyOf(result, newsize);
 
     }
 
