@@ -61,8 +61,12 @@ public class StartUI {
         String temp = input.askStr("Поиск заявок по имени. Введите имя заявки");
         System.out.println();
         Item[] result = tracker.findByName(temp);
-        for (int i = 0; i < result.length; i++) {
-            System.out.println("Вывод заявок с таким именем " + result[i].getName() );
+        if (result.length > 0) {
+            for (int i = 0; i < result.length; i++) {
+                System.out.println("Вывод заявок с таким именем " + result[i].getName());
+            }
+        } else {
+            System.out.println("Заявок с таким именем нет");
         }
     }
 
