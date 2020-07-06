@@ -8,7 +8,7 @@ public class StartUI {
         Item item = new Item();
         item.setName(name);
         Item result = tracker.add(item);
-        System.out.println("Заявка добавлена " + result.getName());
+        System.out.println("Заявка добавлена " + result.getName() + " " + result.getId());
     }
 
     public static void allItems(Input input, Tracker tracker) {
@@ -16,7 +16,7 @@ public class StartUI {
         Item[] result = tracker.findAll();
         if (result.length > 0) {
             for (int i = 0; i < result.length ; i++) {
-                System.out.println(result[i].getName());
+                System.out.println(result[i].getName() + result[i].getId());
             }
         } else {
             System.out.println("Заявки с таким именем не найдены ");
@@ -51,7 +51,7 @@ public class StartUI {
         System.out.println();
         Item result = tracker.findById(temp);
         if (result != null) {
-            System.out.println("Заявка наидена " + result.getName());
+            System.out.println("Заявка наидена " + result.getName() + " " + result.getId());
         } else {
             System.out.println("Заявка не найдена");
         }
@@ -63,7 +63,7 @@ public class StartUI {
         Item[] result = tracker.findByName(temp);
         if (result.length > 0) {
             for (int i = 0; i < result.length; i++) {
-                System.out.println("Вывод заявок с таким именем " + result[i].getName());
+                System.out.println("Вывод заявок с таким именем " + result[i].getName() + "и с таким id " + result[i].getId());
             }
         } else {
             System.out.println("Заявок с таким именем нет");
