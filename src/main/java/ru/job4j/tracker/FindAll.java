@@ -9,10 +9,15 @@ public class FindAll implements UserAction {
 
     @Override
     public boolean execute(Input input, Tracker tracker) {
-        boolean result = false;
+        boolean result = true;
         Item[] temp = tracker.findAll();
         if (temp.length > 0) {
-            result = true;
+            for (int i = 0; i < temp.length ; i++) {
+                System.out.println(temp[i].getName() + " " +  temp[i].getId());
+            }
+        } else {
+            System.out.println("Заявки с таким именем не найдены ");
+            result = false;
         }
         return result;
     }

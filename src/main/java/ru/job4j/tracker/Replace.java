@@ -13,8 +13,12 @@ public class Replace  implements UserAction {
         int id = input.askInt("Enter id  ");
         Item temp = new Item();
         temp.setName(input.askStr(" Enter new item name "));
-        result = tracker.replace(id, temp);
+        if (tracker.replace(id,temp)) {
+            System.out.println("Заявка успешно изменена");
+            result = true;
+        } else {
+            System.out.println("Введите правильные данные");
+        }
         return result;
-
     }
 }
