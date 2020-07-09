@@ -9,12 +9,11 @@ public class FindById  implements UserAction {
 
     @Override
     public boolean execute(Input input, Tracker tracker) {
-        boolean result = false;
+        boolean result = true;
         int id = input.askInt("Enter id  ");
         Item temp = tracker.findById(id);
         if (temp != null) {
             System.out.println("Заявка наидена " + temp.getName() + " " + temp.getId());
-            result = true;
         } else {
             System.out.println("Заявка не найдена");
         }

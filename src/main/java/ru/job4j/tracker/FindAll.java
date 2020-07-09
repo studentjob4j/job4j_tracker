@@ -17,7 +17,6 @@ public class FindAll implements UserAction {
             }
         } else {
             System.out.println("Заявки с таким именем не найдены ");
-            result = false;
         }
         return result;
     }

@@ -18,7 +18,6 @@ public class FindByName implements UserAction  {
             }
         } else {
             System.out.println("Заявок с таким именем нет");
-            result = false;
         }
 
         return result;
