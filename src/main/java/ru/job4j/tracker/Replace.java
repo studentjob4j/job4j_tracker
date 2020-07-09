@@ -10,7 +10,7 @@ public class Replace  implements UserAction {
     @Override
     public boolean execute(Input input, Tracker tracker) {
         boolean result = false;
-        int id = input.askInt("Enter id  ");
+        int id = Integer.parseInt(input.askStr("Enter id  "));
         Item temp = new Item();
         temp.setName(input.askStr(" Enter new item name "));
         if (tracker.replace(id,temp)) {
