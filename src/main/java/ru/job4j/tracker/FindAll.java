@@ -17,11 +17,11 @@ public class FindAll implements UserAction {
         boolean result = true;
         Item[] temp = tracker.findAll();
         if (temp.length > 0) {
-            for (int i = 0; i < temp.length ; i++) {
-                System.out.println(temp[i].getName() + " " +  temp[i].getId());
+            for (int i = 0; i < temp.length; i++) {
+                out.println(temp[i].getName() + " " +  temp[i].getId());
             }
         } else {
-            System.out.println("Заявки с таким именем не найдены ");
+            out.println("Заявки с таким именем не найдены ");
         }
         return result;
     }

@@ -9,12 +9,12 @@ public class StartUITest {
 
     @Test
     public void whenCreateItem() {
-        Input in = new StubInput(new String[] {"0", "Item name", "1"});
+        Input in = new StubInput(new String[] {"0", "Item name","1"});
         Tracker tracker = new Tracker();
         Output out = new StubOutput();
         UserAction[] actions = {new CreateAction(out), new Exit(out)};
         new StartUI(out).init(in, tracker, actions);
-        assertThat(tracker.findAll()[0].getName(), is("Item name"));
+        assertThat(out.toString(), is("Menu." + System.lineSeparator() + "Create a new Item " + System.lineSeparator() + " Exit " + System.lineSeparator()));
     }
 
     @Test
@@ -24,8 +24,8 @@ public class StartUITest {
         Output out = new StubOutput();
         UserAction[] actions = {new CreateAction(out), new Replace(out), new Exit(out)};
         new StartUI(out).init(in, tracker, actions);
-        Item[] result = tracker.findAll();
-        assertThat(result[0].getName(), is("New item "));
+        assertThat(out.toString(), is("Menu." + System.lineSeparator() + "Create a new Item " + System.lineSeparator() +
+                " Replace item " + System.lineSeparator() + " Exit " + System.lineSeparator() + "Заявка успешно изменена" + System.lineSeparator()));
     }
 
     @Test
@@ -35,8 +35,9 @@ public class StartUITest {
         Output out = new StubOutput();
         UserAction[] actions = {new CreateAction(out), new Replace(out), new FindById(out), new Exit(out)};
         new StartUI(out).init(in, tracker, actions);
-        Item result = tracker.findById(1);
-        assertThat(result.getName(), is("Item name"));
+        assertThat(out.toString(), is("Menu." + System.lineSeparator() + "Create a new Item " + System.lineSeparator() + " Replace item " + System.lineSeparator() + "Find by id " + System.lineSeparator() + " " +
+                "Exit " + System.lineSeparator() +
+                "Заявка наидена Item name 1" + System.lineSeparator()));
     }
 
     @Test
@@ -46,8 +47,10 @@ public class StartUITest {
         Output out = new StubOutput();
         UserAction[] actions = {new CreateAction(out), new Replace(out), new FindById(out),new FindByName(out), new Exit(out)};
         new StartUI(out).init(in, tracker, actions);
-        Item[] result = tracker.findByName("Item name");
-        assertThat(result[0].getName(), is("Item name"));
+        assertThat(out.toString(), is("Menu." + System.lineSeparator() + "Create a new Item " + System.lineSeparator() + " Replace item " + System.lineSeparator() + "Find by id " + System.lineSeparator() +
+                "Find by name " + System.lineSeparator() +
+                " Exit " + System.lineSeparator() +
+                "Вывод заявок с таким именем Item name  и с таким id 1" + System.lineSeparator()));
     }
 
     @Test
@@ -58,8 +61,9 @@ public class StartUITest {
         UserAction[] actions = {new CreateAction(out), new Replace(out), new FindById(out),new FindByName(out), new FindAll(out),
                 new Exit(out)};
         new StartUI(out).init(in, tracker, actions);
-        Item[] result = tracker.findAll();
-        assertThat(result[0].getName(), is("Item name"));
+        assertThat(out.toString(), is("Menu." + System.lineSeparator() + "Create a new Item " + System.lineSeparator() + " Replace item " + System.lineSeparator() + "Find by id " + System.lineSeparator() +
+                "Find by name " + System.lineSeparator() + "Find all " + System.lineSeparator() +" Exit " + System.lineSeparator() +
+                "Item name 1" + System.lineSeparator()));
     }
 
     @Test
@@ -81,6 +85,6 @@ public class StartUITest {
         Tracker tracker = new Tracker();
         UserAction[] actions = {new Exit(out)};
         new StartUI(out).init(in, tracker, actions);
-        assertThat(out.toString(), is("Menu." + System.lineSeparator() + "0.  Exit " + System.lineSeparator()));
+        assertThat(out.toString(), is("Menu." + System.lineSeparator() + " Exit " + System.lineSeparator()));
     }
 }
