@@ -6,9 +6,9 @@ public class UsageArrayList {
 
     public static void main(String[] args) {
         ArrayList<String> arrayList = new ArrayList<>();
-        arrayList.add("Petr");
-        arrayList.add("Ivan");
-        arrayList.add("Stepan");
+        arrayList.add(" Petr ");
+        arrayList.add(" Ivan ");
+        arrayList.add(" Stepan ");
         for (String temp : arrayList) {
             System.out.println(temp);
         }
