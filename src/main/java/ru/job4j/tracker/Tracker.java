@@ -1,11 +1,10 @@
 package ru.job4j.tracker;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Tracker {
-    private final ArrayList<Item> list = new ArrayList<>();
+    private final List<Item> list = new ArrayList<>();
     private int ids = 1;
     private int size = 0;
 
