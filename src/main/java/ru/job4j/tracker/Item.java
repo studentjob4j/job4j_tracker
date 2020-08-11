@@ -26,12 +26,6 @@ public class Item implements Comparator<Item> {
 
     @Override
     public int compare(Item o1, Item o2) {
-        int result = 0;
-        if (o1.name.length() > o2.name.length()) {
-            result = 1;
-        } else if (o2.name.length() > o1.name.length()) {
-            result = -1;
-        }
-        return result;
+        return 0;
     }
 }
