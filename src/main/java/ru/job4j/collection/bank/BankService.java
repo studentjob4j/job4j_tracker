@@ -54,7 +54,7 @@ public class BankService {
         boolean rsl = true;
         Account src = findByRequisite(srcPassport, srcRequisite);
         Account dest = findByRequisite(destPassport, dеstRequisite);
-        if ((src == null || src.getBalance() < amount) && dest != null) {
+        if ((src == null || src.getBalance() < amount) || dest != null) {
             rsl = false;
         } else {
             double temp = dest.getBalance();
