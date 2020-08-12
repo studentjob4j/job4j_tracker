@@ -11,8 +11,8 @@ public class WhenCompareByNameTest {
 
     @Test
     public void WhenCompareByNameAndBig () {
-        Job one = new Job("Vasy", 10);
-        Job two = new Job("Vasy", 2);
+        Job one = new Job("John", 10);
+        Job two = new Job("Anna", 2);
         List<Job> list = new ArrayList<>();
         list.add(one);
         list.add(two);

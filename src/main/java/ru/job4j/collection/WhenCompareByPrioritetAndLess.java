@@ -8,10 +8,7 @@ public class WhenCompareByPrioritetAndLess  implements Comparator<Job> {
     public int compare(Job o1, Job o2) {
         int temp = o1.getPriority();
         int temp2 = o2.getPriority();
-        int result = temp - temp2;
-        if (result == 0) {
-            result = o2.getName().compareTo(o1.getName());
-        }
+        int result = temp2 - temp;
         return result;
     }
 }

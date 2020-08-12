@@ -9,9 +9,6 @@ public class WhenCompareByPriority implements Comparator<Job> {
         int temp = o1.getPriority();
         int temp2 = o2.getPriority();
         int result = temp - temp2;
-        if (result == 0) {
-            result = o1.getName().compareTo(o2.getName());
-        }
         return result;
     }
 }

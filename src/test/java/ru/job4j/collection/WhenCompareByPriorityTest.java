@@ -11,7 +11,7 @@ public class WhenCompareByPriorityTest {
 
     @Test
     public void WhenCompareByPriorityAndBig () {
-        Job one = new Job("Bob", 2);
+        Job one = new Job("Bob", 20);
         Job two = new Job("Anna", 2);
         List<Job> list = new ArrayList<>();
         list.add(one);

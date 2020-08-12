@@ -12,14 +12,14 @@ public class WhenCompareByNameAndLessTest {
     @Test
     public void WhenCompareByNameAndLess () {
         Job one = new Job("Bob", 2);
-        Job two = new Job("Bob", 20);
+        Job two = new Job("Anna", 20);
         List<Job> list = new ArrayList<>();
-        list.add(one);
         list.add(two);
+        list.add(one);
         Collections.sort(list, new WhenCompareByNameAndLess());
         List<Job> except = new ArrayList<>();
-        except.add(two);
         except.add(one);
+        except.add(two);
         assertThat(list, is(except));
     }
 
