@@ -18,6 +18,6 @@ public class LexSort implements Comparator<String> {
             result = Integer.compare(one, two);
             break;
         }
-        return result ;
+        return result;
     }
 }

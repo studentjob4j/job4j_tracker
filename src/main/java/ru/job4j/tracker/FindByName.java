@@ -10,7 +10,6 @@ public class FindByName implements UserAction  {
         this.out = out;
     }
 
-
     @Override
     public String name() {
         return "Find by name ";
@@ -23,12 +22,12 @@ public class FindByName implements UserAction  {
         List<Item> temp = tracker.findByName(key);
         if (temp.size() >= 0) {
             for (int i = 0; i < temp.size(); i++) {
-                out.println("Вывод заявок с таким именем " + temp.get(i).getName() + "  и с таким id " + temp.get(i).getId());
+                out.println("Вывод заявок с таким именем " + temp.get(i).getName()
+                        + "  и с таким id " + temp.get(i).getId());
             }
         } else {
             out.println("Заявок с таким именем нет");
         }
-
         return result;
     }
 }

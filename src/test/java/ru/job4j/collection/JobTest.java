@@ -10,7 +10,7 @@ import static org.junit.Assert.*;
 public class JobTest {
 
     @Test
-    public void test () {
+    public void test() {
         Job one = new Job("Bob", 20);
         Job two = new Job("Bob", 2);
         List<Job> list = new ArrayList<>();
@@ -24,7 +24,7 @@ public class JobTest {
     }
 
     @Test
-    public void test2 () {
+    public void test2() {
         Job one = new Job("Bob", 20);
         Job two = new Job("Anna", 20);
         List<Job> list = new ArrayList<>();
@@ -36,5 +36,4 @@ public class JobTest {
         except.add(one);
         assertThat(list, is(except));
     }
-
 }

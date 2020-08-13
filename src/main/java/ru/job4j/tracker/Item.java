@@ -6,7 +6,6 @@ public class Item implements Comparator<Item> {
     private int id;
     private String name;
 
-
     public int getId() {
         return id;
     }
@@ -22,7 +21,6 @@ public class Item implements Comparator<Item> {
     public void setName(String name) {
         this.name = name;
     }
-
 
     @Override
     public int compare(Item o1, Item o2) {

@@ -10,7 +10,7 @@ import static org.junit.Assert.*;
 public class WhenCompareByPrioritetAndLessTest {
 
     @Test
-    public void WhenCompareByPriorityAndLess () {
+    public void whenCompareByPriorityAndLess() {
         Job one = new Job("Bob", 20);
         Job two = new Job("Harry", 200);
         List<Job> list = new ArrayList<>();
@@ -22,5 +22,4 @@ public class WhenCompareByPrioritetAndLessTest {
         except.add(one);
         assertThat(list, is(except));
     }
-
 }

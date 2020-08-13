@@ -51,7 +51,7 @@ public class Tracker {
             item.setId(id);
             list.set(index, item);
         }
-        return index != -1 ;
+        return index != -1;
     }
 
     public boolean delete(int id) {

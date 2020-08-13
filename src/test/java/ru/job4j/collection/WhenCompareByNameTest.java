@@ -10,7 +10,7 @@ import static org.junit.Assert.*;
 public class WhenCompareByNameTest {
 
     @Test
-    public void WhenCompareByNameAndBig () {
+    public void whenCompareByNameAndBig() {
         Job one = new Job("John", 10);
         Job two = new Job("Anna", 2);
         List<Job> list = new ArrayList<>();
@@ -22,5 +22,4 @@ public class WhenCompareByNameTest {
         except.add(one);
         assertThat(list, is(except));
     }
-
 }

@@ -7,6 +7,7 @@ public class PhoneDictionary {
     private ArrayList<Person> persons = new ArrayList<Person>();
 
     public void add(Person person) {
+
         this.persons.add(person);
     }
 
@@ -18,8 +19,8 @@ public class PhoneDictionary {
     public ArrayList<Person> find(String key) {
         ArrayList<Person> result = new ArrayList<>();
         for (Person temp : persons) {
-            if (temp.getName().contains(key) || temp.getSurname().contains(key) || temp.getAddress().contains(key) || temp.getPhone().contains(key))
-            {
+            if (temp.getName().contains(key) || temp.getSurname().contains(key)
+                    || temp.getAddress().contains(key) || temp.getPhone().contains(key)) {
                 result.add(temp);
             }
         }

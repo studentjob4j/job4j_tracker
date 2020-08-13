@@ -10,7 +10,7 @@ import static org.junit.Assert.*;
 public class WhenCompareByNameAndLessTest {
 
     @Test
-    public void WhenCompareByNameAndLess () {
+    public void whenCompareByNameAndLess() {
         Job one = new Job("Bob", 2);
         Job two = new Job("Anna", 20);
         List<Job> list = new ArrayList<>();
@@ -22,5 +22,4 @@ public class WhenCompareByNameAndLessTest {
         except.add(two);
         assertThat(list, is(except));
     }
-
 }
