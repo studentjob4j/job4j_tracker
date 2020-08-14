@@ -18,7 +18,7 @@ public class LexSort implements Comparator<String> {
             two[i++] = temp;
         }
         for (int j = 0; j < 1; j++) {
-            int temp =Integer.parseInt(one[j]);
+            int temp = Integer.parseInt(one[j]);
             int temp2 = Integer.parseInt(two[j]);
             result = temp - temp2;
         }
