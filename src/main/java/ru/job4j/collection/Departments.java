@@ -18,7 +18,6 @@ public class Departments {
             }
         }
         List<String> result = new ArrayList<>(tmp);
-        sortAsc(result);
         return result;
     }
 
