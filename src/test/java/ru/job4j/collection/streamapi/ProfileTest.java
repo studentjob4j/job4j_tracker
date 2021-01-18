@@ -19,7 +19,7 @@ public class ProfileTest {
 
     @Test
     public void whenHaveAddress() {
-        Profile profile = new Profile();
+        Profiles profile = new Profiles();
         List<Address> res = profile.collect(profiles);
         assertThat(res.size(), is(2));
     }

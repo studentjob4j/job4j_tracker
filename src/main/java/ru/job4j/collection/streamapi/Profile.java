@@ -14,10 +14,8 @@ public class Profile {
         this.address = address;
     }
 
-    public  List<Address> collect(List<Profile> profiles) {
-        List<Address> result = profiles.stream()
-                .map(x -> x.address)
-                .collect(Collectors.toUnmodifiableList());
-        return result;
+    public Address getAddress() {
+        return address;
     }
+
 }
