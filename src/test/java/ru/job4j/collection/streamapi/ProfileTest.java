@@ -10,17 +10,25 @@ import static org.junit.Assert.*;
 public class ProfileTest {
 
     private List<Profile> profiles = new ArrayList<>();
+    private Address one = new Address("Vladivostok", "Nekrasova", 12, 23);
+    private Address two = new Address("Vladivostok", "Nekrasova", 12, 23);
+    private Address three = new Address("Moscow", "Tverskaya", 11, 22);
 
     @Before
     public void setUp() {
-        profiles.add(new Profile(new Address("Vladivostok", "Nekrasova", 12, 23)));
-        profiles.add(new Profile(new Address("Vladivostok", "Tigrovaya", 20, 232)));
+
+        profiles.add(new Profile(one));
+        profiles.add(new Profile(two));
+        profiles.add(new Profile(three));
     }
 
     @Test
-    public void whenHaveAddress() {
+    public void whenHaveUniqueAddress() {
         Profiles profile = new Profiles();
         List<Address> res = profile.collect(profiles);
-        assertThat(res.size(), is(2));
+        List<Address> except = new ArrayList<>();
+        except.add(three);
+        except.add(two);
+        assertThat(res, is(except));
     }
 }

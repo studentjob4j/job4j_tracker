@@ -1,13 +1,15 @@
 package ru.job4j.collection.streamapi;
 
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Profiles {
 
     public List<Address> collect(List<Profile> profiles) {
-        return profiles.stream()
+      return   profiles.stream()
                 .map(x -> x.getAddress())
-                .collect(Collectors.toUnmodifiableList());
+                .sorted(Comparator.comparing(Address::getCity))
+                .distinct()
+                .collect(Collectors.toList());
     }
 }
