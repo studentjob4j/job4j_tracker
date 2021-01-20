@@ -22,27 +22,18 @@ public class BankService {
 
     public User findByPassport(String passport) {
         User result = null;
-        for (User key : users.keySet()) {
-            if (key.getPassport().equals(passport)) {
-                result = key;
-                break;
-            }
-
-        }
-        return result;
+        return users.keySet().stream()
+               .filter(x -> x.getPassport().equals(passport))
+               .findFirst().orElse(result);
     }
 
     public Account findByRequisite(String passport, String requisite) {
         Account result = null;
                 User user = findByPassport(passport);
                 if (user != null) {
-                    List<Account> temp = users.get(user);
-                    for (Account account : temp) {
-                        if (account.getRequisite().equals(requisite)) {
-                            result = account;
-                            break;
-                        }
-                    }
+                     return users.get(user).stream()
+                             .filter(x -> x.getRequisite().equals(requisite))
+                             .findFirst().orElse(null);
                 }
         return result;
     }
@@ -60,7 +51,6 @@ public class BankService {
             double temp2 = src.getBalance();
             src.setBalance(temp2 - amount);
         }
-
         return rsl;
     }
 }
