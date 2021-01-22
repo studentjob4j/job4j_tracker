@@ -17,8 +17,9 @@ public class PriorityQueque {
     public void put(Task task) {
         if (tasks.size() == 0) {
             tasks.add(i, task);
+
         }
-        for (Task temp : tasks) {
+        for (var temp : tasks) {
             if (task.getPriority() < temp.getPriority()) {
                 tasks.add(i, task);
                 i++;
