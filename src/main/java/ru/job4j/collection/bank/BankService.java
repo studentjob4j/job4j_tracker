@@ -12,24 +12,24 @@ public class BankService {
 
     public void addAccount(String passport, Account account) {
         Optional.ofNullable(findByPassport(passport))
-        .flatMap(user -> Optional.ofNullable(users.get(user)))
+        .flatMap(user -> Optional.ofNullable(users.get(user.get())))
         .ifPresent(x -> x.add(account));
     }
 
-    public User findByPassport(String passport) {
+    public Optional<User> findByPassport(String passport) {
         return users.keySet().stream()
                .filter(x -> x.getPassport().equals(passport))
-               .findFirst().orElse(null);
+               .findFirst();
     }
 
     public Optional<Account> findByRequisite(String passport, String requisite) {
-      Optional<User> user =  Optional.ofNullable(findByPassport(passport));
+      Optional<User> user =  (findByPassport(passport));
       Optional<Account> result = Optional.empty();
       if (user.isPresent()) {
           List<Account> temp = users.get(user.get());
-           result = Optional.of(temp.stream()
+           result = (temp.stream()
                    .filter(x -> x.getRequisite().equals(requisite))
-                   .findFirst().get());
+                   .findFirst());
       }
        return result;
     }
