@@ -5,7 +5,6 @@ import java.util.LinkedList;
 public class PriorityQueque {
 
     private LinkedList<Task> tasks = new LinkedList<>();
-    private int i;
 
     /**
      * Метод должен вставлять в нужную позицию элемент.
@@ -15,17 +14,15 @@ public class PriorityQueque {
      */
 
     public void put(Task task) {
-        if (tasks.size() == 0) {
-            tasks.add(i, task);
-
-        }
-        for (var temp : tasks) {
-            if (task.getPriority() < temp.getPriority()) {
-                tasks.add(i, task);
-                i++;
+        int index = 0;
+        for (Task element : tasks) {
+            if (element.getPriority() < task.getPriority()) {
+                index++;
+            } else {
                 break;
             }
         }
+        this.tasks.add(index, task);
     }
 
     public Task take() {
