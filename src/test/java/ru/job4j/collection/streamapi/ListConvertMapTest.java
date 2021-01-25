@@ -15,7 +15,7 @@ public class ListConvertMapTest {
     @Test
     public void whenConvertListInMap() {
         ListConvertMap convert = new ListConvertMap();
-        Map<String, Class<? extends Student>> result = convert.covert(list);
+        Map<String, Student> result = convert.covert(list);
         assertThat(result.size(), is(3));
     }
 }
