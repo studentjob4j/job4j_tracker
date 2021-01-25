@@ -8,15 +8,11 @@ import java.util.function.UnaryOperator;
 public class SearchAtt {
 
     public static List<Attachment> filterSize(List<Attachment> list) {
-        List<Attachment> result = new ArrayList<>();
-        result = filter(list,  x -> x.getSize() > 100);
-        return result;
+        return filter(list,  x -> x.getSize() > 100);
     }
 
     public static List<Attachment> filterName(List<Attachment> list) {
-        List<Attachment> result = new ArrayList<>();
-        result = filter(list,  x -> x.getName().equals("bug"));
-        return result;
+        return  filter(list,  x -> x.getName().equals("bug"));
     }
 
     private  static List<Attachment> filter(List<Attachment> list, Predicate<Attachment> predict) {
