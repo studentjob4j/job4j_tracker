@@ -13,7 +13,7 @@ public class CreateAction  implements UserAction {
     }
 
     @Override
-    public boolean execute(Input input, Tracker tracker) {
+    public boolean execute(Input input, Store tracker) {
         Item item = new Item();
         item.setName(input.askStr("Enter items name "));
         tracker.add(item);

@@ -1,16 +1,16 @@
+/*
 package ru.job4j.tracker;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Tracker {
+public class MemTracker {
     private final List<Item> list = new ArrayList<>();
     private int ids = 1;
     private int size = 0;
 
     public Item add(Item item) {
-        item.setId(ids++);
         list.add(item);
         return item;
     }
@@ -64,4 +64,4 @@ public class Tracker {
         }
         return result;
     }
-}
+}*/

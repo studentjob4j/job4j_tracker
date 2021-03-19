@@ -13,12 +13,12 @@ public class Replace  implements UserAction {
     }
 
     @Override
-    public boolean execute(Input input, Tracker tracker) {
+    public boolean execute(Input input, Store tracker) {
         boolean result = true;
         int id = Integer.parseInt(input.askStr("Enter id  "));
         Item temp = new Item();
         temp.setName(input.askStr(" Enter new item name "));
-        if (tracker.replace(id, temp)) {
+        if (tracker.replace(String.valueOf(id), temp)) {
             out.println("Заявка успешно изменена");
         } else {
             out.println("Введите правильные данные");
