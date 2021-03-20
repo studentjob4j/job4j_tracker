@@ -13,10 +13,10 @@ public class Delete  implements  UserAction {
     }
 
     @Override
-    public boolean execute(Input input, Store tracker) {
+    public boolean execute(Input input, MemTracker tracker) {
         boolean result = true;
         int id = input.askInt("Enter id  ");
-        if (tracker.delete(String.valueOf(id))) {
+        if (tracker.delete(id)) {
             out.println("Заявка успешно удалена");
         } else {
             out.println("Введите правильные данные");

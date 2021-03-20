@@ -1,10 +1,7 @@
 package ru.job4j.tracker;
 
 import org.junit.Test;
-
 import java.util.ArrayList;
-import java.util.List;
-
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -17,7 +14,7 @@ public class StartUITest {
         list.add("Item name");
         list.add("1");
         Input in = new StubInput(list);
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         Output out = new StubOutput();
         ArrayList<UserAction> actions = new ArrayList<>();
         actions.add(new CreateAction(out));
@@ -33,11 +30,11 @@ public class StartUITest {
         list.add("0");
         list.add("Item name");
         list.add("1");
-        list.add("1");
+        list.add("0");
         list.add("New item ");
         list.add("2");
         Input in = new StubInput(list);
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         Output out = new StubOutput();
         ArrayList<UserAction> actions = new ArrayList<>();
         actions.add(new CreateAction(out));
@@ -55,10 +52,10 @@ public class StartUITest {
         list.add("0");
         list.add("Item name");
         list.add("2");
-        list.add("1");
+        list.add("0");
         list.add("3");
         Input in = new StubInput(list);
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         Output out = new StubOutput();
         ArrayList<UserAction> actions = new ArrayList<>();
         actions.add(new CreateAction(out));
@@ -69,7 +66,7 @@ public class StartUITest {
         assertThat(out.toString(), is("Menu." + System.lineSeparator() + "Create a new Item "
                 + System.lineSeparator() + "Replace item " + System.lineSeparator()
                 + "Find by id " + System.lineSeparator() + "Exit " + System.lineSeparator()
-                + "Заявка наидена Item name 1" + System.lineSeparator()));
+                + "Заявка наидена Item name" + System.lineSeparator()));
     }
 
     @Test
@@ -81,7 +78,7 @@ public class StartUITest {
         list.add("Item name");
         list.add("4");
         Input in = new StubInput(list);
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         Output out = new StubOutput();
         ArrayList<UserAction> actions = new ArrayList<>();
         actions.add(new CreateAction(out));
@@ -93,7 +90,7 @@ public class StartUITest {
         assertThat(out.toString(), is("Menu." + System.lineSeparator() + "Create a new Item "
                 + System.lineSeparator() + "Replace item " + System.lineSeparator() + "Find by id "
                 + System.lineSeparator() + "Find by name " + System.lineSeparator() + "Exit "
-                + System.lineSeparator() + "Вывод заявок с таким именем Item name  и с таким id 1"
+                + System.lineSeparator() + "Вывод заявок с таким именем Item name"
                 + System.lineSeparator()));
     }
 
@@ -105,7 +102,7 @@ public class StartUITest {
         list.add("4");
         list.add("5");
         Input in = new StubInput(list);
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         Output out = new StubOutput();
         ArrayList<UserAction> actions = new ArrayList<>();
         actions.add(new CreateAction(out));
@@ -119,7 +116,7 @@ public class StartUITest {
                 + System.lineSeparator() + "Replace item " + System.lineSeparator() + "Find by id "
                 + System.lineSeparator() + "Find by name " + System.lineSeparator() + "Find all "
                 + System.lineSeparator() + "Exit " + System.lineSeparator()
-                + "Item name 1" + System.lineSeparator()));
+                + "Item name" + System.lineSeparator()));
     }
 
     @Test
@@ -127,11 +124,11 @@ public class StartUITest {
         ArrayList<String> list = new ArrayList<>();
         list.add("0");
         list.add("Item name");
-        list.add("6");
-        list.add("1");
+        list.add("5");
+        list.add("0");
         list.add("6");
         Input in = new StubInput(list);
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         Output out = new StubOutput();
         ArrayList<UserAction> actions = new ArrayList<>();
         actions.add(new CreateAction(out));
@@ -142,8 +139,12 @@ public class StartUITest {
         actions.add(new Delete(out));
         actions.add(new Exit(out));
         new StartUI(out).init(in, tracker, actions);
-        boolean result = tracker.delete(1);
-        assertThat(result, is(true));
+        assertThat(out.toString(), is("Menu." + System.lineSeparator() + "Create a new Item "
+                + System.lineSeparator() + "Replace item " + System.lineSeparator() + "Find by id "
+                + System.lineSeparator() + "Find by name " + System.lineSeparator() + "Find all "
+                + System.lineSeparator() + "Delete item " + System.lineSeparator()
+                + "Exit " + System.lineSeparator()
+                + "Заявка успешно удалена" + System.lineSeparator()));
     }
 
     @Test
@@ -152,7 +153,7 @@ public class StartUITest {
         ArrayList<String> list = new ArrayList<>();
         list.add("0");
         Input in = new StubInput(list);
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         ArrayList<UserAction> actions = new ArrayList<>();
         actions.add(new Exit(out));
         new StartUI(out).init(in, tracker, actions);
@@ -166,7 +167,7 @@ public class StartUITest {
         ArrayList<String> list = new ArrayList<>();
         list.add("2");
         Input in = new StubInput(list);
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         ArrayList<UserAction> actions = new ArrayList<>();
         actions.add(new Exit(out));
         new StartUI(out).init(in, tracker, actions);
@@ -180,7 +181,7 @@ public class StartUITest {
         ArrayList<String> list = new ArrayList<>();
         list.add("0");
         Input in = new StubInput(list);
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         ArrayList<UserAction> actions = new ArrayList<>();
         actions.add(new Exit(out));
         new StartUI(out).init(in, tracker, actions);

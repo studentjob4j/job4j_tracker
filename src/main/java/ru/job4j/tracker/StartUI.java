@@ -13,7 +13,7 @@ public class StartUI {
         this.out = out;
     }
 
-    public void init(Input input, Store tracker, List<UserAction> actions) throws SQLException {
+    public void init(Input input, MemTracker tracker, List<UserAction> actions) {
         boolean run = true;
         while (run) {
             this.showMenu(actions);
@@ -41,9 +41,8 @@ public class StartUI {
     public static void main(String[] args) {
         Output output = new ConsoleOutput();
         ArrayList<UserAction> actions = new ArrayList<>();
-        Input validate = new ValidateInput(output,new ConsoleInput());
-        try (Store tracker = new SqlTracker()) {
-            tracker.init();
+        Input validate = new ValidateInput(output, new ConsoleInput());
+        MemTracker tracker = new MemTracker();
             actions.add(new CreateAction(output));
             actions.add(new Replace(output));
             actions.add(new FindAll(output));
@@ -52,10 +51,5 @@ public class StartUI {
             actions.add(new FindById(output));
             actions.add(new Exit(output));
             new StartUI(output).init(validate, tracker, actions);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
     }
-
 }

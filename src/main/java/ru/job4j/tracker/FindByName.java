@@ -16,7 +16,7 @@ public class FindByName implements UserAction  {
     }
 
     @Override
-    public boolean execute(Input input, Store tracker) throws SQLException {
+    public boolean execute(Input input, MemTracker tracker) {
         boolean result = true;
         String key = input.askStr("Enter name  ");
         List<Item> temp = tracker.findByName(key);
