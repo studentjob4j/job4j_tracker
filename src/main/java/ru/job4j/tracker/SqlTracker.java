@@ -11,30 +11,33 @@ public class SqlTracker implements Store {
     private Connection connection;
 
     public void init() {
-        try (InputStream in = SqlTracker.class.getClassLoader().getResourceAsStream("app.properties")) {
+        try (InputStream in = SqlTracker.class.getClassLoader()
+                .getResourceAsStream("app.properties")) {
             Properties config = new Properties();
             config.load(in);
             Class.forName(config.getProperty("driver-class-name"));
-            connection = DriverManager.getConnection(config.getProperty("url"), config.getProperty("username"),
+            connection = DriverManager.getConnection(config.getProperty("url"),
+                    config.getProperty("username"),
                     config.getProperty("password"));
         } catch (Exception e) {
             throw new IllegalStateException(e);
         }
     }
 
-    public void createTable( SqlTracker tracker) throws SQLException {
+    public void createTable(SqlTracker tracker) throws SQLException {
         try (Statement statement = tracker.connection.createStatement()) {
-            String temp = String.format("create table %s (%s, %s, %s);", "items", "id serial primary key", "item_id int", "name text");
+            String temp = String.format("create table %s (%s, %s);",
+                    "items", "id serial primary key", "name text");
             statement.execute(temp);
         }
     }
 
     @Override
     public Item add(Item item) {
-            try (PreparedStatement statement = connection.prepareStatement("insert into items(item_id,name) values (? , ?)",
+            try (PreparedStatement statement =
+                         connection.prepareStatement("insert into items(name) values (?)",
                                  Statement.RETURN_GENERATED_KEYS)) {
-                statement.setString(2, item.getName());
-                statement.setInt(1, -1);
+                statement.setString(1, item.getName());
                 statement.execute();
                 try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
                     if (generatedKeys.next()) {
@@ -51,10 +54,9 @@ public class SqlTracker implements Store {
     public boolean replace(String id, Item item) {
         boolean result = false;
         try (PreparedStatement statement =
-                     connection.prepareStatement("update items set item_id = ?, name = ? where id = ?")) {
-            statement.setInt(1, item.getId());
-            statement.setString(2, item.getName());
-            statement.setInt(3, Integer.parseInt(id));
+                     connection.prepareStatement("update items set name = ? where id = ?")) {
+            statement.setString(1, item.getName());
+            statement.setInt(2, Integer.parseInt(id));
             result = statement.executeUpdate() > 0;
         } catch (Exception e) {
             e.printStackTrace();
@@ -83,7 +85,7 @@ public class SqlTracker implements Store {
              while (resultSet.next()) {
               Item temp = new Item();
               temp.setName((resultSet.getString("name")));
-              temp.setId(resultSet.getInt("item_id"));
+              temp.setId(resultSet.getInt("id"));
               result.add(temp);
              }
         } catch (Exception e) {
@@ -95,13 +97,14 @@ public class SqlTracker implements Store {
     @Override
     public List<Item> findByName(String key) {
         List<Item> result = new ArrayList<>();
-        try (PreparedStatement statement = connection.prepareStatement("select * from items where name = ?;")) {
+        try (PreparedStatement statement
+                     = connection.prepareStatement("select * from items where name = ?;")) {
             statement.setString(1, key);
             Item temp = new Item();
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 temp.setName(resultSet.getString("name"));
-                temp.setId(resultSet.getInt("item_id"));
+                temp.setId(resultSet.getInt("id"));
                 result.add(temp);
             }
         } catch (SQLException e) {
@@ -113,12 +116,13 @@ public class SqlTracker implements Store {
     @Override
     public Item findById(String id) {
         Item result = new Item();
-        try (PreparedStatement statement = connection.prepareStatement("select * from items where id = ?;")) {
+        try (PreparedStatement statement
+                     = connection.prepareStatement("select * from items where id = ?;")) {
             statement.setInt(1, Integer.parseInt(id));
             ResultSet resultSet = statement.executeQuery();
-            while(resultSet.next()) {
+            while (resultSet.next()) {
                  result.setName(resultSet.getString("name"));
-                 result.setId(resultSet.getInt("item_id"));
+                 result.setId(resultSet.getInt("id"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
