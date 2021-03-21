@@ -8,24 +8,19 @@ import java.util.Properties;
 
 public class SqlTracker implements Store {
 
-    private Connection connection;
+    private final Connection connection;
+    private int count;
 
-    public void init() {
-        try (InputStream in = SqlTracker.class.getClassLoader()
-                .getResourceAsStream("app.properties")) {
-            Properties config = new Properties();
-            config.load(in);
-            Class.forName(config.getProperty("driver-class-name"));
-            connection = DriverManager.getConnection(config.getProperty("url"),
-                    config.getProperty("username"),
-                    config.getProperty("password"));
-        } catch (Exception e) {
-            throw new IllegalStateException(e);
-        }
+    public SqlTracker(Connection connection) {
+        this.connection = connection;
     }
 
-    public void createTable(SqlTracker tracker) throws SQLException {
-        try (Statement statement = tracker.connection.createStatement()) {
+    public int getCount() {
+        return count;
+    }
+
+    public void createTable() throws SQLException {
+        try (Statement statement = connection.createStatement()) {
             String temp = String.format("create table %s (%s, %s);",
                     "items", "id serial primary key", "name text");
             statement.execute(temp);
@@ -42,6 +37,7 @@ public class SqlTracker implements Store {
                 try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
                     if (generatedKeys.next()) {
                         item.setId(generatedKeys.getInt(1));
+                        count = generatedKeys.getInt(1);
                     }
                 }
             } catch (Exception e) {
@@ -138,17 +134,11 @@ public class SqlTracker implements Store {
         }
     }
 
-    public void execute(String value) {
-        try (Statement statement = this.connection.createStatement()) {
-            statement.execute(value);
+    public void drop(String value, Connection connection) {
+        try (Statement statement = connection.createStatement()) {
+            statement.execute(String.format("drop table %s", value));
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
-    public void drop(String name) {
-        String temp = String.format("drop table %s;", name);
-        execute(temp);
-    }
-
 }
