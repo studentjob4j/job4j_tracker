@@ -26,76 +26,82 @@ public class TrackerTest {
     }
 
     @Test
-    public void whenAddNewItemThenTrackerHasSameItem() throws Exception {
-        SqlTracker tracker = new SqlTracker(ConnectionRollback.create(this.init()));
-        //tracker.createTable();
-        Item item = new Item();
-        item.setName("test1");
-        tracker.add(item);
-        assertThat(tracker.findByName("test1").size(), is(1));
-        tracker.close();
+    public void whenAddNewItemThenTrackerHasSameItem() {
+        try (SqlTracker tracker = new SqlTracker(ConnectionRollback.create(this.init()))) {
+            Item item = new Item();
+            item.setName("test1");
+            tracker.add(item);
+            assertThat(tracker.findByName("test1").size(), is(1));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Test
-    public void whenReplace() throws  Exception {
-        SqlTracker tracker = new SqlTracker(ConnectionRollback.create(this.init()));
-        //tracker.createTable();
-        Item bug = new Item();
-        bug.setName("Bug");
-        tracker.add(bug);
-        int id = bug.getId();
-        Item bugWithDesc = new Item();
-        bugWithDesc.setName("Bug with description");
-        boolean result = tracker.replace(String.valueOf(id), bugWithDesc);
-        tracker.close();
-        assertThat(result, is(true));
+    public void whenReplace() {
+        try (SqlTracker tracker = new SqlTracker(ConnectionRollback.create(this.init()))) {
+            Item bug = new Item();
+            bug.setName("Bug");
+            tracker.add(bug);
+            int id = bug.getId();
+            Item bugWithDesc = new Item();
+            bugWithDesc.setName("Bug with description");
+            boolean result = tracker.replace(String.valueOf(id), bugWithDesc);
+            assertThat(result, is(true));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Test
-    public void whenDelete() throws  Exception {
-        SqlTracker tracker = new SqlTracker(ConnectionRollback.create(this.init()));
-        //tracker.createTable();
-        Item item = new Item();
-        item.setName("test1");
-        item = tracker.add(item);
-        boolean result = tracker.delete(String.valueOf(item.getId()));
-        tracker.close();
-        assertThat(result, is(true));
+    public void whenDelete() {
+        try (SqlTracker tracker = new SqlTracker(ConnectionRollback.create(this.init()))) {
+            Item item = new Item();
+            item.setName("test1");
+            item = tracker.add(item);
+            boolean result = tracker.delete(String.valueOf(item.getId()));
+            assertThat(result, is(true));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Test
-    public void whengetAllItems() throws  Exception {
-        SqlTracker tracker = new SqlTracker(ConnectionRollback.create(this.init()));
-        //tracker.createTable();
-        Item item = new Item();
-        item.setName("test1");
-        tracker.add(item);
-        List<Item> result = tracker.findAll();
-        tracker.close();
-        assertThat(result.size(), is(1));
+    public void whengetAllItems() {
+        try (SqlTracker tracker = new SqlTracker(ConnectionRollback.create(this.init()))) {
+            Item item = new Item();
+            item.setName("test1");
+            tracker.add(item);
+            List<Item> result = tracker.findAll();
+            assertThat(result.size(), is(1));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Test
-    public void whenFindByName() throws  Exception {
-        SqlTracker tracker = new SqlTracker(ConnectionRollback.create(this.init()));
-        //tracker.createTable();
-        Item item = new Item();
-        item.setName("test1");
-        tracker.add(item);
-        List<Item> result = tracker.findByName("test1");
-        tracker.close();
-        assertThat(result.get(0).getName(), is("test1"));
+    public void whenFindByName() {
+        try (SqlTracker tracker = new SqlTracker(ConnectionRollback.create(this.init()))) {
+            Item item = new Item();
+            item.setName("test1");
+            tracker.add(item);
+            List<Item> result = tracker.findByName("test1");
+            assertThat(result.get(0).getName(), is("test1"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Test
-    public void whenFindById() throws Exception {
-        SqlTracker tracker = new SqlTracker(ConnectionRollback.create(this.init()));
-        //tracker.createTable();
-        Item item = new Item();
-        item.setName("test1");
-        tracker.add(item);
-        Item result = tracker.findById(String.valueOf(tracker.getCount()));
-        tracker.close();
-        assertThat(result.getName(), is("test1"));
+    public void whenFindById() {
+        try (SqlTracker tracker = new SqlTracker(ConnectionRollback.create(this.init()))) {
+            Item item = new Item();
+            item.setName("test1");
+            tracker.add(item);
+            Item result = tracker.findById(String.valueOf(tracker.getCount()));
+            assertThat(result.getName(), is("test1"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
