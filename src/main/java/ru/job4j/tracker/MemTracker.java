@@ -63,4 +63,21 @@ public class MemTracker {
         }
         return result;
     }
+
+    public static void main(String[] args) {
+        while (true) {
+            Output output = new ConsoleOutput();
+            ArrayList<String> list = new ArrayList<>(10000000);
+            for (int i = 0; i < 9999998; i++) {
+                list.add("0");
+            }
+            list.add(999998, "1");
+            Input in = new StubInput(list);
+            MemTracker tracker = new MemTracker();
+            ArrayList<UserAction> actions = new ArrayList<>();
+            actions.add(new CreateAction(output));
+            actions.add(new Exit(output));
+            new StartUI(output).init(in, tracker, actions);
+        }
+    }
 }

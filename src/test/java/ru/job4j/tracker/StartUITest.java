@@ -188,5 +188,4 @@ public class StartUITest {
         assertThat(out.toString(), is(
                 String.format("Menu.%n" + "Exit %n")));
     }
-
 }
