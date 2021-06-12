@@ -1,5 +1,12 @@
 package ru.job4j.tracker;
 
+/**
+ * @author Evgenii Shegai
+ * @since 12.06.2021
+ * @version 1.0
+ * Для интеграционного тестирования использую liquibase
+ */
+
 import java.util.Comparator;
 
 public class Item implements Comparator<Item> {
