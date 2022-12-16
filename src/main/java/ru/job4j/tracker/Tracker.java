@@ -1,5 +1,11 @@
 package ru.job4j.tracker;
 
+/**
+ * Проект Трекер
+ * @author Shegai Evgeni
+ * @version 1.0
+ * @since 17.12.2022
+ */
 public class Tracker {
     private final Item[] items = new Item[100];
     private int ids = 1;

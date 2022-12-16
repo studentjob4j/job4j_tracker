@@ -1,11 +1,19 @@
 package ru.job4j.tracker;
 
+/**
+ * Проект Трекер
+ * @author Shegai Evgeni
+ * @version 1.0
+ * @since 17.12.2022
+ */
+
 import org.junit.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
 public class TrackerTest {
+
     @Test
     public void whenAddNewItemThenTrackerHasSameItem() {
         Tracker tracker = new Tracker();
