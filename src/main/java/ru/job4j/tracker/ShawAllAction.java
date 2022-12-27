@@ -9,6 +9,12 @@ package ru.job4j.tracker;
 
 public class ShawAllAction implements UserAction {
 
+    private final Output out;
+
+    public ShawAllAction(Output output) {
+        this.out = output;
+    }
+
     @Override
     public String name() {
         return "Show all items";
@@ -16,14 +22,14 @@ public class ShawAllAction implements UserAction {
 
     @Override
     public boolean execute(Input input, Tracker tracker) {
-        System.out.println("=== Show all items ===");
+        out.println("=== Show all items ===");
         Item[] items = tracker.findAll();
         if (items.length > 0) {
             for (Item item : items) {
-                System.out.println(item + "id заявки - " + item.getId());
+                out.println(item + "id заявки - " + item.getId());
             }
         } else {
-            System.out.println("Хранилище еще не содержит заявок");
+            out.println("Хранилище еще не содержит заявок");
         }
         return true;
     }
