@@ -58,4 +58,85 @@ public class StartUITest {
         new StartUI(output).init(in, tracker, actions);
         assertThat(tracker.findById(item.getId())).isNull();
     }
+
+    @Test
+    public void whenReplaceItemTestOutputIsSuccessfully() {
+        Output out = new StubOutput();
+        Tracker tracker = new Tracker();
+        Item one = tracker.add(new Item("test1"));
+        String replaceName = "New Test Name";
+        Input in = new StubInput(
+                new String[] {"0", String.valueOf(one.getId()), replaceName, "1"}
+        );
+        UserAction[] actions = new UserAction[]{
+                new EditAction(out),
+                new ExitAction(out)
+        };
+        new StartUI(out).init(in, tracker, actions);
+        String ln = System.lineSeparator();
+        assertThat(out.toString()).isEqualTo(
+                "Menu" + ln
+                        + "Edit item" + ln
+                        + "Exit" + ln
+                        + "=== Edit item ===" + ln
+                        + "Menu" + ln
+                        + "Edit item" + ln
+                        + "Exit" + ln
+
+        );
+    }
+
+    @Test
+    public void whenShawAllActionTestOutputIsSuccessfully() {
+        Output out = new StubOutput();
+        Tracker tracker = new Tracker();
+        Item one = tracker.add(new Item("test1"));
+        Input in = new StubInput(
+                new String[] {"0", "1"}
+        );
+        UserAction[] actions = new UserAction[]{
+                new ShawAllAction(out),
+                new ExitAction(out)
+        };
+        new StartUI(out).init(in, tracker, actions);
+        String ln = System.lineSeparator();
+        assertThat(out.toString()).isEqualTo(
+                "Menu" + ln
+                        + "Show all items" + ln
+                        + "Exit" + ln
+                        + "=== Show all items ===" + ln
+                        + "Item{id=1, name='test1'}" + ln
+                        + "Menu" + ln
+                        + "Show all items" + ln
+                        + "Exit" + ln
+
+        );
+    }
+
+    @Test
+    public void whenFindByIdActionTestOutputIsSuccessfully() {
+        Output out = new StubOutput();
+        Tracker tracker = new Tracker();
+        Item one = tracker.add(new Item("test1"));
+        Input in = new StubInput(
+                new String[] {"0", String.valueOf(one.getId()), "1"}
+        );
+        UserAction[] actions = new UserAction[]{
+                new FindByIdAction(out),
+                new ExitAction(out)
+        };
+        new StartUI(out).init(in, tracker, actions);
+        String ln = System.lineSeparator();
+        assertThat(out.toString()).isEqualTo(
+                "Menu" + ln
+                        + "Find item by id" + ln
+                        + "Exit" + ln
+                        + "=== Find item by id ===" + ln
+                        + "Item{id=1, name='test1'}" + ln
+                        + "Menu" + ln
+                        + "Find item by id" + ln
+                        + "Exit" + ln
+
+        );
+    }
 }

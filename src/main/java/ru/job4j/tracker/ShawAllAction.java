@@ -26,7 +26,7 @@ public class ShawAllAction implements UserAction {
         Item[] items = tracker.findAll();
         if (items.length > 0) {
             for (Item item : items) {
-                out.println(item + "id заявки - " + item.getId());
+                out.println(item);
             }
         } else {
             out.println("Хранилище еще не содержит заявок");
