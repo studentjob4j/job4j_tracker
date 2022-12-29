@@ -19,7 +19,7 @@ public class StartUI {
         while (run) {
             showMenu(actions);
             int select = (input.askInt("Select "));
-            if (select < 0 || select > actions.length) {
+            if (select < 0 || select > actions.length - 1) {
                 out.println("Wrong select : you can input from 0 to " + (actions.length - 1));
                 continue;
             }
